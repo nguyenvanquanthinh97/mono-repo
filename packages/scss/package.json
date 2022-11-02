@@ -1,0 +1,37 @@
+{
+  "name": "@ds.e/scss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "normalize-scss": "^7.0.1"
+  },
+  "devDependencies": {
+    "husky": "^4.3.8",
+    "lint-staged": "^13.0.3",
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.20",
+    "postcss": "^8.4.18",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.14.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-prettier": "^2.0.0"
+  },
+  "scripts": {
+    "lint": "stylelint './**/*.scss' --custom-syntax postcss-scss",
+    "lint:fix": "yarn lint --fix",
+    "build": "node src/script/build.js",
+    "dev": "nodemon --watch src --exec yarn build -e scss"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.scss": "yarn lint:fix"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@ds.e/react",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "react": "^18.2.0",
+    "rollup": "^3.2.5",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "yarn build --watch"
+  },
+  "type": "module"
+}
