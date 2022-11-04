@@ -1,13 +1,13 @@
 {
   "name": "@leo.97/core",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "yarn lerna run build",
     "dev": "yarn lerna run dev",
     "test": "yarn lerna run test",
-    "publish": "yarn lerna publish"
+    "publish": "lerna publish"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +23,6 @@
       "**/normalize-scss"
     ]
   },
+
   "private": true
 }
