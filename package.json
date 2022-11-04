@@ -7,12 +7,20 @@
     "build": "yarn lerna run build",
     "dev": "yarn lerna run dev",
     "test": "yarn lerna run test",
-    "publish": "yarn build && yarn test && lerna publish"
+    "publish": "yarn build && yarn test && lerna publish",
+    "commit": "cz"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
     "lerna": "^6.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "workspaces": {
     "packages": [
@@ -23,6 +31,5 @@
       "**/normalize-scss"
     ]
   },
-
   "private": true
 }
