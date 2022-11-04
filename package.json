@@ -1,12 +1,13 @@
 {
-  "name": "@ds.e/core",
+  "name": "@leo.97/core",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "yarn lerna run build",
     "dev": "yarn lerna run dev",
-    "test": "yarn lerna run test"
+    "test": "yarn lerna run test",
+    "publish": "yarn lerna publish"
   },
   "author": "",
   "license": "ISC",

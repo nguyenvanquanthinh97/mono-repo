@@ -1,5 +1,5 @@
 {
-  "name": "@ds.e/foundation",
+  "name": "@leo.97/foundation",
   "version": "1.0.0",
   "main": "lib/index.js",
   "license": "MIT",
@@ -14,5 +14,8 @@
     "build": "tsc",
     "dev": "yarn run build --watch",
     "test": "jest --verbose"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

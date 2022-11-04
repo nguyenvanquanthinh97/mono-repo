@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add ds.e
+  /usr/local/bin/node /usr/local/bin/yarn add leo.97
 
 PATH: 
   /var/folders/p4/nn37b_dn0ts3xdr42sq5fmcm0000gn/T/yarn--1667448486814-0.9043086404166591:/Users/thinhnguyen/Desktop/senior-fe/playgrounds/react/node_modules/.bin:/Users/thinhnguyen/.config/yarn/link/node_modules/.bin:/Users/thinhnguyen/Desktop/senior-fe/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/var/folders/p4/nn37b_dn0ts3xdr42sq5fmcm0000gn/T/yarn--1667448486003-0.14303129374337398:/Users/thinhnguyen/Desktop/senior-fe/node_modules/.bin:/Users/thinhnguyen/.config/yarn/link/node_modules/.bin:/Users/thinhnguyen/Desktop/senior-fe/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/var/folders/p4/nn37b_dn0ts3xdr42sq5fmcm0000gn/T/yarn--1667448485570-0.8098432097668591:/Users/thinhnguyen/Desktop/senior-fe/node_modules/.bin:/Users/thinhnguyen/.config/yarn/link/node_modules/.bin:/Users/thinhnguyen/Desktop/senior-fe/node_modules/.bin:/Users/thinhnguyen/.yarn/bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin
@@ -14,7 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/ds.e: Not found
+  Error: https://registry.yarnpkg.com/leo.97: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66145:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140890:22)
       at Request.emit (node:events:390:28)

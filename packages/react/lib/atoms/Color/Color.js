@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spacing } from '@ds.e/foundation';
+import { Spacing } from '@leo.97/foundation';
 
 const Color = ({ hexCode, height = Spacing.sm, width = Spacing.sm, }) => {
     const className = `dse-width-${width} dse-height-${height}`;

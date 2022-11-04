@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Select } from "@ds.e/react";
+import { Select } from "@leo.97/react";
 
-import "@ds.e/scss/lib/global.css";
-import "@ds.e/scss/lib/Select.css";
+import "@leo.97/scss/lib/global.css";
+import "@leo.97/scss/lib/Select.css";
 
 const options = [
   {

@@ -16,5 +16,5 @@ export default {
   },
   // going to compile the typescript
   plugins: [Ts()],
-  external: ["react", "@ds.e/foundation"],
+  external: ["react", "@leo.97/foundation"],
 };

@@ -37,6 +37,7 @@
     border: 1px solid $form-border-color;
     background-color: $form-bg-color;
     z-index: 99;
+    display: none;
 
     list-style-type: none;
     box-shadow: $box-shadow-base;
@@ -50,6 +51,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    box-sizing: border-box;
     cursor: pointer;
     @include padding('xs')
   }
@@ -62,4 +64,8 @@
     background-color: $form-bg-option-selected;
     color: $form-color-option-selected;
   }
+}
+
+.dse-select__overlay--open {
+  display: block;
 }

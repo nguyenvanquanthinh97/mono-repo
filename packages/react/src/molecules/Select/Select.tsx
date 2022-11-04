@@ -184,69 +184,69 @@ export const Select: React.FC<SelectProps> = ({
         </svg>
       </button>
 
-      {isOpen && (
-        <ul
-          id="dse-select-list"
-          style={{ top: overlayTop }}
-          className="dse-select__overlay"
-          role="menu"
-        >
-          {options?.map((option, optionIndex) => {
-            const isSelected = selectedIndex === optionIndex;
-            const isHighlighted = highlightedIndex === optionIndex;
+      <ul
+        id="dse-select-list"
+        style={{ top: overlayTop }}
+        className={`dse-select__overlay ${
+          isOpen && "dse-select__overlay--open"
+        }`}
+        role="menu"
+      >
+        {options?.map((option, optionIndex) => {
+          const isSelected = selectedIndex === optionIndex;
+          const isHighlighted = highlightedIndex === optionIndex;
 
-            const ref = optionRefs[optionIndex];
+          const ref = optionRefs[optionIndex];
 
-            const renderOptionProps = {
-              option,
-              isSelected,
-              getOptionRecommendedProps: (overrideProps = {}) => {
-                return {
-                  className: `dse-select__option 
+          const renderOptionProps = {
+            option,
+            isSelected,
+            getOptionRecommendedProps: (overrideProps = {}) => {
+              return {
+                className: `dse-select__option 
                     ${isSelected ? "dse-select__option--selected" : ""}
                     ${isHighlighted ? "dse-select__option--highlighted" : ""}
                   `,
-                  role: "menuitemradio",
-                  ref,
-                  key: option.value,
-                  onClick: () => onOptionHandler(option, optionIndex),
-                  onKeyDown: onOptionKeyDown,
-                  tabIndex: isHighlighted ? 0 : -1,
-                  onMouseEnter: () => highlightOption(optionIndex),
-                  onMouseLeave: () => highlightOption(null),
-                  ...overrideProps,
-                };
-              },
-            };
-            if (renderOption) {
-              return renderOption(renderOptionProps);
-            }
+                role: "menuitemradio",
+                ref,
+                key: option.value,
+                onClick: () => onOptionHandler(option, optionIndex),
+                onKeyDown: onOptionKeyDown,
+                tabIndex: isHighlighted ? 0 : -1,
+                onMouseEnter: () => highlightOption(optionIndex),
+                onMouseLeave: () => highlightOption(null),
+                ...overrideProps,
+              };
+            },
+          };
+          if (renderOption) {
+            return renderOption(renderOptionProps);
+          }
 
-            return (
-              <li {...renderOptionProps.getOptionRecommendedProps()}>
-                <Text>{option.label}</Text>
-                {isSelected && (
-                  <svg
-                    width="1rem"
-                    height="1rem"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="{1.5}"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4.5 12.75l6 6 9-13.5"
-                    />
-                  </svg>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+          return (
+            <li {...renderOptionProps.getOptionRecommendedProps()}>
+              <Text>{option.label}</Text>
+              {isSelected && (
+                <svg
+                  width="1rem"
+                  height="1rem"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="{1.5}"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
+                </svg>
+              )}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

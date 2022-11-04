@@ -143,6 +143,7 @@
   border: 1px solid var(--dse-form-border-color, #f1f2f3);
   background-color: var(--dse-form-bg-color, #fff);
   z-index: 99;
+  display: none;
   list-style-type: none;
   box-shadow: var(--dse-box-shadow-base, 0 4px 11px rgba(157, 157, 157, 0.21));
   position: absolute;
@@ -154,6 +155,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  box-sizing: border-box;
   cursor: pointer;
   padding: 0.75rem;
 }
@@ -165,4 +167,8 @@
 .dse-select__option--selected {
   background-color: var(--dse-form-bg-option-selected, #5ece7b);
   color: var(--dse-form-color-option-selected, #fff);
+}
+
+.dse-select__overlay--open {
+  display: block;
 }

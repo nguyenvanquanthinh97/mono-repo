@@ -1,5 +1,5 @@
 import React from "react";
-import { Spacing } from "@ds.e/foundation";
+import { Spacing } from "@leo.97/foundation";
 
 interface MarginProps {
   space?: keyof typeof Spacing;
