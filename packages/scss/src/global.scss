@@ -21,6 +21,10 @@
 @import "base/reset";
 @import "base/root";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: $body-font-family;
   font-size: $body-font-size;

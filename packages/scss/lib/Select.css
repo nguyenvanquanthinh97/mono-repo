@@ -108,82 +108,61 @@
  * styles for components.
  *
  */
-.dse-width-none {
-  width: 0rem;
+.dse-select {
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
-.dse-height-none {
-  height: 0rem;
+.dse-select__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid var(--dse-form-border-color, #f1f2f3);
+  background: var(--dse-form-bg-color, #fff);
+  font-family: var(--dse-body-font-family, "Playfair Display", serif);
+  cursor: pointer;
 }
 
-.dse-width-xxxs {
-  width: 0.25rem;
+.dse-select__caret {
+  transition: all 250ms ease;
 }
 
-.dse-height-xxxs {
-  height: 0.25rem;
+.dse-select__caret--open {
+  transform: rotate(180deg);
 }
 
-.dse-width-xxs {
-  width: 0.5rem;
+.dse-select__caret--closed {
+  transform: rotate(0deg);
 }
 
-.dse-height-xxs {
-  height: 0.5rem;
+.dse-select__overlay {
+  padding: 0rem;
+  margin: 0rem;
+  border: 1px solid var(--dse-form-border-color, #f1f2f3);
+  background-color: var(--dse-form-bg-color, #fff);
+  z-index: 99;
+  list-style-type: none;
+  box-shadow: var(--dse-box-shadow-base, 0 4px 11px rgba(157, 157, 157, 0.21));
+  position: absolute;
+  width: 100%;
 }
 
-.dse-width-xs {
-  width: 0.75rem;
+.dse-select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.75rem;
 }
 
-.dse-height-xs {
-  height: 0.75rem;
+.dse-select__option--highlighted {
+  background-color: var(--dse-form-bg-color-hover, #f1f2f3);
 }
 
-.dse-width-sm {
-  width: 1rem;
-}
-
-.dse-height-sm {
-  height: 1rem;
-}
-
-.dse-width-md {
-  width: 1.5rem;
-}
-
-.dse-height-md {
-  height: 1.5rem;
-}
-
-.dse-width-lg {
-  width: 2rem;
-}
-
-.dse-height-lg {
-  height: 2rem;
-}
-
-.dse-width-xl {
-  width: 3rem;
-}
-
-.dse-height-xl {
-  height: 3rem;
-}
-
-.dse-width-xxl {
-  width: 4.5rem;
-}
-
-.dse-height-xxl {
-  height: 4.5rem;
-}
-
-.dse-width-xxxl {
-  width: 6rem;
-}
-
-.dse-height-xxxl {
-  height: 6rem;
+.dse-select__option--selected {
+  background-color: var(--dse-form-bg-option-selected, #5ece7b);
+  color: var(--dse-form-color-option-selected, #fff);
 }

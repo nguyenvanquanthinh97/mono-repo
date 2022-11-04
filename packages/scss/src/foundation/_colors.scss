@@ -43,3 +43,8 @@ $form-border-focus-color: var(--dse-form-border-focus-color, $green) !default;
 =============================================*/
 $appbar-primary-bg: var(--dse-appbar-primary-bg, $dark-blue) !default;
 $appbar-color: var(--dse-appbar-color, $white) !default;
+
+/*=============================================
+=                 Box shadow                       =
+=============================================*/
+$box-shadow-base: var(--dse-box-shadow-base, $shadows-dark) !default;

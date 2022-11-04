@@ -28970,7 +28970,222 @@ const Text = ({
   }, children);
 };
 exports.Text = Text;
-},{"react":"../../../node_modules/react/index.js","@ds.e/foundation":"../../../node_modules/@ds.e/foundation/lib/index.js"}],"../../../node_modules/@ds.e/react/lib/index.js":[function(require,module,exports) {
+},{"react":"../../../node_modules/react/index.js","@ds.e/foundation":"../../../node_modules/@ds.e/foundation/lib/index.js"}],"../../../node_modules/@ds.e/react/lib/atoms/Margin/Margin.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Margin = void 0;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const Margin = ({
+  space = "xs",
+  left,
+  right,
+  top,
+  bottom,
+  children
+}) => {
+  let className = "";
+  if (!(left || right || top || bottom)) {
+    className = `dse-margin-${space}`;
+  }
+  if (left) {
+    className = `${className} dse-margin-left-${space}`;
+  }
+  if (right) {
+    className = `${className} dse-margin-right-${space}`;
+  }
+  if (top) {
+    className = `${className} dse-margin-top-${space}`;
+  }
+  if (bottom) {
+    className = `${className} dse-margin-bottom-${space}`;
+  }
+  return _react.default.createElement("div", {
+    className: className
+  }, children);
+};
+exports.Margin = Margin;
+},{"react":"../../../node_modules/react/index.js"}],"../../../node_modules/@ds.e/react/lib/molecules/Select/Select.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Select = void 0;
+var _react = _interopRequireWildcard(require("react"));
+var _Text = require("../../atoms/Text/Text.js");
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+const KEY_CODES = {
+  ENTER: "Enter",
+  SPACE: "Space",
+  DOWN_ARROW: "ArrowDown",
+  ESC: "Escape",
+  UP_ARROW: "ArrowUp"
+};
+const getPreviousOptionIndex = (currentIndex, options) => {
+  if (currentIndex === null) {
+    return 0;
+  }
+  if (currentIndex === 0) {
+    return options.length - 1;
+  }
+  return currentIndex - 1;
+};
+const getNextOptionIndex = (currentIndex, options) => {
+  if (currentIndex === null) {
+    return 0;
+  }
+  if (currentIndex === options.length - 1) {
+    return 0;
+  }
+  return currentIndex + 1;
+};
+const Select = ({
+  onOptionSelected: handler,
+  options = [],
+  label = "Please select an option ...",
+  renderOption
+}) => {
+  const [selectedIndex, setSelectedIndex] = (0, _react.useState)(null);
+  const [highlightedIndex, setHighlightedIndex] = (0, _react.useState)(null);
+  const [isOpen, setIsOpen] = (0, _react.useState)(false);
+  const labelRef = (0, _react.useRef)(null);
+  const [optionRefs, setOptionRefs] = (0, _react.useState)([]);
+  const [overlayTop, setOverlayTop] = (0, _react.useState)(0);
+  let selectedOption = null;
+  if (selectedIndex != null) {
+    selectedOption = options[selectedIndex];
+  }
+  const onOptionHandler = (option, optionIndex) => {
+    if (handler) {
+      handler(option, optionIndex);
+    }
+    setSelectedIndex(optionIndex);
+    setIsOpen(false);
+  };
+  const onLabelClick = () => {
+    setIsOpen(prevIsOpen => !prevIsOpen);
+  };
+  const highlightOption = optionIndex => {
+    setHighlightedIndex(optionIndex);
+  };
+  const onButtonKeyDown = event => {
+    if ([KEY_CODES.ENTER, KEY_CODES.SPACE, KEY_CODES.DOWN_ARROW].includes(event.key)) {
+      setIsOpen(true);
+      // set focus on the list item
+      highlightOption(0);
+    }
+  };
+  const onOptionKeyDown = event => {
+    if (event.key === KEY_CODES.ESC) {
+      setIsOpen(false);
+      return;
+    }
+    if (event.key === KEY_CODES.DOWN_ARROW) {
+      highlightOption(getNextOptionIndex(highlightedIndex, options));
+    }
+    if (event.key === KEY_CODES.UP_ARROW) {
+      highlightOption(getPreviousOptionIndex(highlightedIndex, options));
+    }
+    if (event.key === KEY_CODES.ENTER) {
+      onOptionHandler(options[highlightedIndex], highlightedIndex);
+    }
+  };
+  (0, _react.useEffect)(() => {
+    setOptionRefs(options.map(_ => (0, _react.createRef)()));
+  }, [options.length]);
+  (0, _react.useEffect)(() => {
+    if (highlightedIndex !== null && isOpen) {
+      const ref = optionRefs[highlightedIndex];
+      if (ref && ref.current) {
+        ref.current.focus();
+      }
+    }
+  }, [isOpen, highlightedIndex]);
+  (0, _react.useEffect)(() => {
+    setOverlayTop((labelRef.current?.clientHeight || 0) + 10);
+  }, [labelRef.current?.clientHeight]);
+  return _react.default.createElement("div", {
+    className: "dse-select"
+  }, _react.default.createElement("button", {
+    ref: labelRef,
+    className: "dse-select__label",
+    onClick: onLabelClick,
+    onKeyDown: onButtonKeyDown,
+    "aria-haspopup": true,
+    "aria-expanded": isOpen,
+    "aria-controls": "dse-select-list"
+  }, _react.default.createElement(_Text.Text, null, selectedOption == null ? label : selectedOption.label), _react.default.createElement("svg", {
+    className: `dse-select__caret
+          ${isOpen ? "dse-select__caret--open" : "dse-select__caret--closed"}`,
+    height: "1rem",
+    width: "1rem",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    strokeWidth: "1.5",
+    stroke: "currentColor"
+  }, _react.default.createElement("path", {
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    d: "M19.5 8.25l-7.5 7.5-7.5-7.5"
+  }))), isOpen && _react.default.createElement("ul", {
+    id: "dse-select-list",
+    style: {
+      top: overlayTop
+    },
+    className: "dse-select__overlay",
+    role: "menu"
+  }, options?.map((option, optionIndex) => {
+    const isSelected = selectedIndex === optionIndex;
+    const isHighlighted = highlightedIndex === optionIndex;
+    const ref = optionRefs[optionIndex];
+    const renderOptionProps = {
+      option,
+      isSelected,
+      getOptionRecommendedProps: (overrideProps = {}) => {
+        return {
+          className: `dse-select__option 
+                    ${isSelected ? "dse-select__option--selected" : ""}
+                    ${isHighlighted ? "dse-select__option--highlighted" : ""}
+                  `,
+          ref,
+          key: option.value,
+          onClick: () => onOptionHandler(option, optionIndex),
+          onKeyDown: onOptionKeyDown,
+          tabIndex: isHighlighted ? 0 : -1,
+          onMouseEnter: () => highlightOption(optionIndex),
+          onMouseLeave: () => highlightOption(null),
+          ...overrideProps
+        };
+      }
+    };
+    if (renderOption) {
+      return renderOption(renderOptionProps);
+    }
+    return _react.default.createElement("li", {
+      ...renderOptionProps.getOptionRecommendedProps()
+    }, _react.default.createElement(_Text.Text, null, option.label), isSelected && _react.default.createElement("svg", {
+      width: "1rem",
+      height: "1rem",
+      xmlns: "http://www.w3.org/2000/svg",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      strokeWidth: "{1.5}",
+      stroke: "currentColor"
+    }, _react.default.createElement("path", {
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      d: "M4.5 12.75l6 6 9-13.5"
+    })));
+  })));
+};
+exports.Select = Select;
+},{"react":"../../../node_modules/react/index.js","../../atoms/Text/Text.js":"../../../node_modules/@ds.e/react/lib/atoms/Text/Text.js"}],"../../../node_modules/@ds.e/react/lib/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28982,6 +29197,18 @@ Object.defineProperty(exports, "Color", {
     return _Color.Color;
   }
 });
+Object.defineProperty(exports, "Margin", {
+  enumerable: true,
+  get: function () {
+    return _Margin.Margin;
+  }
+});
+Object.defineProperty(exports, "Select", {
+  enumerable: true,
+  get: function () {
+    return _Select.Select;
+  }
+});
 Object.defineProperty(exports, "Text", {
   enumerable: true,
   get: function () {
@@ -28990,7 +29217,9 @@ Object.defineProperty(exports, "Text", {
 });
 var _Color = require("./atoms/Color/Color.js");
 var _Text = require("./atoms/Text/Text.js");
-},{"./atoms/Color/Color.js":"../../../node_modules/@ds.e/react/lib/atoms/Color/Color.js","./atoms/Text/Text.js":"../../../node_modules/@ds.e/react/lib/atoms/Text/Text.js"}],"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var _Margin = require("./atoms/Margin/Margin.js");
+var _Select = require("./molecules/Select/Select.js");
+},{"./atoms/Color/Color.js":"../../../node_modules/@ds.e/react/lib/atoms/Color/Color.js","./atoms/Text/Text.js":"../../../node_modules/@ds.e/react/lib/atoms/Text/Text.js","./atoms/Margin/Margin.js":"../../../node_modules/@ds.e/react/lib/atoms/Margin/Margin.js","./molecules/Select/Select.js":"../../../node_modules/@ds.e/react/lib/molecules/Select/Select.js"}],"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -29041,13 +29270,13 @@ function reloadCSS() {
   }, 50);
 }
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../../node_modules/@ds.e/scss/lib/Text.css":[function(require,module,exports) {
+},{"./bundle-url":"../../../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../../node_modules/@ds.e/scss/lib/global.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../node_modules/@ds.e/scss/lib/global.css":[function(require,module,exports) {
+},{"_css_loader":"../../../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../node_modules/@ds.e/scss/lib/Select.css":[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
@@ -29059,13 +29288,27 @@ module.exports = reloadCSS;
 var _react = _interopRequireDefault(require("react"));
 var _reactDom = _interopRequireDefault(require("react-dom"));
 var _react2 = require("@ds.e/react");
-require("@ds.e/scss/lib/Text.css");
 require("@ds.e/scss/lib/global.css");
+require("@ds.e/scss/lib/Select.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-_reactDom.default.render(_react.default.createElement(_react2.Text, {
-  size: "xl"
-}, "this is some text"), document.querySelector("#root"));
-},{"react":"../../../node_modules/react/index.js","react-dom":"../../../node_modules/react-dom/index.js","@ds.e/react":"../../../node_modules/@ds.e/react/lib/index.js","@ds.e/scss/lib/Text.css":"../../../node_modules/@ds.e/scss/lib/Text.css","@ds.e/scss/lib/global.css":"../../../node_modules/@ds.e/scss/lib/global.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var options = [{
+  label: "Strict Black",
+  value: "strict-black"
+}, {
+  label: "Heavenly Green",
+  value: "heavenly-green"
+}, {
+  label: "Sweet Pink",
+  value: "pink"
+}];
+_reactDom.default.render(_react.default.createElement("div", {
+  style: {
+    padding: "40px"
+  }
+}, _react.default.createElement(_react2.Select, {
+  options: options
+})), document.querySelector("#root"));
+},{"react":"../../../node_modules/react/index.js","react-dom":"../../../node_modules/react-dom/index.js","@ds.e/react":"../../../node_modules/@ds.e/react/lib/index.js","@ds.e/scss/lib/global.css":"../../../node_modules/@ds.e/scss/lib/global.css","@ds.e/scss/lib/Select.css":"../../../node_modules/@ds.e/scss/lib/Select.css"}],"../../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -29090,7 +29333,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60981" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52991" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
