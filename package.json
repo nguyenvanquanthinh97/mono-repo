@@ -7,7 +7,7 @@
     "build": "yarn lerna run build",
     "dev": "yarn lerna run dev",
     "test": "yarn lerna run test",
-    "publish": "lerna publish"
+    "publish": "yarn build && yarn test && lerna publish"
   },
   "author": "",
   "license": "ISC",

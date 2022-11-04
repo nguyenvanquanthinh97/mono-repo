@@ -3,6 +3,10 @@
   "version": "0.1.1",
   "description": "",
   "main": "index.js",
+  "files": [
+    "lib",
+    "src"
+  ],
   "dependencies": {
     "normalize-scss": "^7.0.1"
   },
