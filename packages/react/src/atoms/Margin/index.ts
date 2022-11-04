@@ -1,1 +1,1 @@
-export { Margin } from "./Margin";
+export { Margin, MarginProps } from "./Margin";

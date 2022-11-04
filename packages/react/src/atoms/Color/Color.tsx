@@ -1,7 +1,7 @@
 import React from "react";
 import { Spacing } from "@leo.97/foundation";
 
-interface ColorProps {
+export interface ColorProps {
   hexCode: string;
   width?: keyof typeof Spacing;
   height?: keyof typeof Spacing;
