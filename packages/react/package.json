@@ -45,7 +45,7 @@
     "start-storybook": "start-storybook",
     "build-storybook": "build-storybook",
     "storybook": "start-storybook -p 6006",
-    "chromatic": "chromatic --project-token=dce676e589d3"
+    "test:chromatic": "chromatic --project-token=\"$CHROMATIC_PROJECT_TOKEN\""
   },
   "readme": "ERROR: No README data found!",
   "_id": "@leo.97/react@1.0.0",

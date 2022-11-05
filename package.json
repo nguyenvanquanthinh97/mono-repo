@@ -8,6 +8,8 @@
     "dev": "yarn lerna run dev",
     "test": "yarn lerna run test",
     "publish": "yarn build && yarn test && lerna publish",
+    "test:chromatic": "yarn lerna run test:chromatic",
+    "build-storybook": "yarn build && yarn lerna run build-storybook",
     "commit": "cz"
   },
   "author": "",

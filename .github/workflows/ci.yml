@@ -12,7 +12,10 @@ jobs:
   builds:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Required to retrieve git history
 
       - name: Install dependencies
         run: yarn
@@ -22,3 +25,8 @@ jobs:
 
       - name: Automated tests
         run: yarn test
+
+      - name: Visual regression tests
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{secrets.CHROMATIC_PROJECT_TOKEN}}
+        run: yarn test:chromatic
